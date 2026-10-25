@@ -1,0 +1,102 @@
+﻿================================================================================
+                    LAPORAN QUIZ PEMROGRAMAN SISTEM MOBILE
+================================================================================
+Nama Aplikasi : KatalogKita
+Platform      : Flutter (Dart)
+Konsep        : Modular Component Architecture, Local Dataset, Null Safety
+================================================================================
+
+1. DESKRIPSI APLIKASI
+---------------------
+KatalogKita adalah aplikasi mobile e-commerce / katalog produk interaktif yang
+dibangun menggunakan framework Flutter. Aplikasi dirancang dengan antarmuka modern,
+responsif, dan bersih sesuai dengan design system yang konsisten. Fitur utama 
+mencakup katalog produk lokal, pencarian instan, filter kategori dinamis, halaman
+detail dengan kalkulasi subtotal belanja dinamis, serta halaman profil pengguna.
+
+
+2. FITUR DAN SCREEN UTAMA
+--------------------------
+a. Home Screen (lib/screens/home_screen.dart)
+   - Header sapaan personal dan jalan pintas ke layar profil pengguna.
+   - Kolom pencarian realtime yang memfilter nama serta deskripsi produk.
+   - Filter kategori horizontal berbasis chip interaktif:
+     Semua, Elektronik, Fashion, Makanan, Olahraga, Buku.
+   - Grid produk 2 kolom responsif dengan badge status, rating, harga Rupiah,
+     dan tampilan khusus (empty state) jika hasil pencarian tidak ditemukan.
+
+b. Detail Screen (lib/screens/detail_screen.dart)
+   - Tampilan visual gambar produk beresolusi tinggi dengan animasi transisi Hero.
+   - Informasi detail lengkap: badge produk baru, rating, ulasan, kategori, dan deskripsi.
+   - Pengatur jumlah barang (+ / -) dengan kalkulasi otomatis subtotal belanja.
+   - Tombol favorit (wishlist) pada AppBar.
+   - Aksi interaktif: Tombol 'Bagikan' dan tombol 'Tambah ke Keranjang'
+     dengan konfirmasi visual (Floating SnackBar).
+
+c. Profil Screen (lib/screens/profile_screen.dart)
+   - Kartu profil visual dengan avatar bergradien warna, nama, email mahasiswa,
+     dan badge status Member Premium.
+   - Ringkasan statistik aktivitas: Pesanan (24), Wishlist (8), Ulasan (12).
+   - Menu profil: Riwayat Pesanan, Wishlist, Alamat Pengiriman, Metode Pembayaran,
+     Notifikasi, dan Pusat Bantuan.
+   - Tombol Edit Profil dan tombol Keluar yang dilengkapi konfirmasi dialog (AlertDialog).
+
+
+3. DESIGN SYSTEM & REUSABLE COMPONENTS
+--------------------------------------
+a. Typography & Font:
+   - Font Utama : Inter (Google Fonts)
+   - Skala Teks : Heading 1 (28px), Heading 2 (22px), Heading 3 (18px),
+                  Subtitle (16px), Body (14px), Caption (12px), Button (15px),
+                  dan Price (16px bold).
+
+b. Palet Warna:
+   - Primary        : #6C63FF (Modern Indigo)
+   - Secondary      : #FF6584 (Coral Accent)
+   - Background     : #F8F9FE (Soft Grey-Blue)
+   - Surface        : #FFFFFF (White)
+   - SurfaceVariant : #F0EFFE (Light Lavender)
+   - Text Primary   : #1A1A2E (Dark Charcoal)
+   - Text Secondary : #6B7280 (Muted Slate)
+
+c. Reusable Components:
+   - PrimaryButton     : Tombol utama dengan elevasi halus, state loading, dan ikon.
+   - SecondaryButton   : Tombol outline terstandarisasi untuk aksi sekunder.
+   - CustomTextField   : Input teks serbaguna dengan prefix/suffix icon.
+   - ProductCard       : Kartu produk grid interaktif dengan rating dan format Rupiah.
+   - CustomAppBar      : AppBar modular dengan navigasi kembali dan title styling.
+   - CategoryChip      : Chip filter interaktif animasi dengan emoji kategori.
+
+
+4. STRUKTUR DIREKTORI PROYEK
+----------------------------
+lib/
+├── main.dart                  -> Entry point aplikasi & konfigurasi ThemeData
+├── data/
+│   └── local_data.dart        -> Mock dataset 10 produk dan 6 kategori
+├── models/
+│   ├── category.dart          -> Definisi model Kategori
+│   └── product.dart           -> Definisi model Produk & fungsi format harga
+├── theme/
+│   ├── app_colors.dart        -> Definisi palet warna konsisten
+│   ├── app_text_styles.dart   -> Definisi tipografi Inter
+│   └── app_theme.dart         -> Pengaturan tema global ThemeData
+├── widgets/
+│   ├── category_chip.dart     -> Komponen CategoryChip
+│   ├── custom_app_bar.dart    -> Komponen CustomAppBar
+│   ├── custom_text_field.dart -> Komponen CustomTextField
+│   ├── primary_button.dart    -> Komponen PrimaryButton
+│   ├── product_card.dart      -> Komponen ProductCard
+│   └── secondary_button.dart  -> Komponen SecondaryButton
+└── screens/
+    ├── home_screen.dart       -> Layar beranda (search, kategori, grid)
+    ├── detail_screen.dart     -> Layar detail produk
+    └── profile_screen.dart    -> Layar profil pengguna
+
+
+5. HASIL VERIFIKASI
+-------------------
+- Analisis Kode (flutter analyze) : No issues found! (0 error, 0 warning)
+- Null Safety                     : 100% didukung
+- External Dependencies           : cupertino_icons, google_fonts
+================================================================================
